@@ -4,7 +4,6 @@ My playground for playing with the latest dot net features
 
 ## Whats next
 
-- [ ] Build container
 - [ ] Init Solution
   - [ ] Init Application.Test project
     - [ ] With XUnit, Moq, FluentAssertions, AllowNullsOff, TreatWarningsAsErrors on
