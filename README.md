@@ -60,6 +60,6 @@ to execute the continouse integration pipeline locally.
    ```
 1. Restored dependencies to lock in the versions to the target runtime
    ``` bash
-   dotnet restore --use-lock-file --runtime linux-musl-x64
+   dotnet restore --use-lock-file
    ```
    

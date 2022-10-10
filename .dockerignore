@@ -1,0 +1,11 @@
+$ Ignore git
+.git
+
+### DotnetCore ###
+# .NET Core build folders
+bin/
+obj/
+
+# Custom ignores
+TestResults/
+published/
