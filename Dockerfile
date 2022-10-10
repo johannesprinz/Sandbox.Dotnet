@@ -24,7 +24,7 @@ RUN dotnet build \
     --configuration $CONFIGURATION \
     --no-restore
 
-## Test Application Project
+## Build Application.UnitTest Project
 COPY tests/Application.UnitTests/packages.lock.json tests/Application.UnitTests/packages.lock.json
 COPY tests/Application.UnitTests/Application.UnitTests.csproj tests/Application.UnitTests/Application.UnitTests.csproj
 RUN dotnet restore \
@@ -37,6 +37,8 @@ RUN dotnet build \
     --configuration $CONFIGURATION \
     --no-restore
 
+FROM build AS test
+
 RUN dotnet test \
     tests/Application.UnitTests/Application.UnitTests.csproj \
     --configuration $CONFIGURATION \
@@ -45,7 +47,8 @@ RUN dotnet test \
     --logger "trx;logfilename=testResults.trx" \
     --collect:"XPlat Code Coverage"
 
-## Publish Application Project
+FROM test as publish
+
 RUN dotnet publish \
     ./src/Application/Application.csproj \
     --configuration $CONFIGURATION \
@@ -54,7 +57,7 @@ RUN dotnet publish \
     --output published
 
 # Finalize image
-FROM mcr.microsoft.com/dotnet/aspnet:$VERSION AS publish
+FROM mcr.microsoft.com/dotnet/aspnet:$VERSION AS run
 
 #RUN apk add --no-cache icu-libs
 #RUN apk add --no-cache libgdiplus --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
