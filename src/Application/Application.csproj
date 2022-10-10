@@ -5,6 +5,7 @@
     <RuntimeIdentifier>linux-musl-x64</RuntimeIdentifier>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
 </Project>
