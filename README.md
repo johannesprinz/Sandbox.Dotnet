@@ -2,12 +2,35 @@
 
 My playground for playing with the latest dot net features
 
+## Getting started
+
+The [Dockerfile](./Dockerfile) is your source of truth for building and running this project.
+For a developer quick start here are two options to get up and running and check for any feedback.
+
+### Running on bare metal
+
+Post every change you can run:
+``` bash
+docker build . --target build
+```
+to execute the continouse integration pipeline locally.
+
+### Running within development container
+
+1. Connect to the development container
+1. Within the container terminal run:
+   ```bash
+   dotnet watch --project ./tests/Application.UnitTests/Application.UnitTests.csproj -- test
+   ```
+   to enable live unit testing.
+
 ## Whats next
 
 - [ ] CI Pipeline in docker
 
 ## How we got here
-(as build documentation)
+
+🚧_as build documentation_🚧
 
 1. Initialise project workspace
    - From WSL in my working directory
@@ -35,3 +58,8 @@ My playground for playing with the latest dot net features
    dotnet add tests/Application.UnitTests/Application.UnitTests.csproj package AutoFixture.AutoMoq
    dotnet add tests/Application.UnitTests/Application.UnitTests.csproj package FluentAssertions
    ```
+1. Restored dependencies to lock in the versions to the target runtime
+   ``` bash
+   dotnet restore --use-lock-file --runtime linux-musl-x64
+   ```
+   
