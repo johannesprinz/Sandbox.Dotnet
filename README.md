@@ -11,7 +11,7 @@ For a developer quick start here are two options to get up and running and check
 
 Post every change you can run:
 ``` bash
-docker build . --target build
+docker build . --target test
 ```
 to execute the continouse integration pipeline locally.
 
@@ -24,9 +24,21 @@ to execute the continouse integration pipeline locally.
    ```
    to enable live unit testing.
 
+### To update dependencies
+
+Because we are using lock files and in the pipeline we enforce `--lock-mode`, to update nuget refrences one needs to use the `--force-evaluate` flag to update dependencies.
+
+```bash
+nuget restore --force-evaluate 
+```
+
 ## Whats next
 
 - [ ] CI Pipeline in docker
+  - Can i get the package cache and test output to sync between dev container and host?
+    - Will be required by remote pipeline for caching and test reporting.
+  - Can i get the test output to render a little nicer?
+  - 
 
 ## How we got here
 
@@ -60,6 +72,6 @@ to execute the continouse integration pipeline locally.
    ```
 1. Restored dependencies to lock in the versions to the target runtime
    ``` bash
-   dotnet restore --use-lock-file
+   dotnet restore
    ```
    
